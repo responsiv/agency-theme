@@ -1,0 +1,62 @@
+##
+url = "/account/login"
+layout = "account"
+title = "Account Login"
+
+[authentication]
+rememberMe = "always"
+twoFactorAuth = 0
+recoverPassword = 1
+
+[session]
+security = "guest"
+redirect = "account/index"
+==
+{% put meta %}
+    <meta name="turbo-cache-control" content="no-cache">
+{% endput %}
+<div class="page-account">
+    <div class="py-4">
+        <main class="form-login m-auto">
+
+            {% if authentication.showLoginForm %}
+                <div class="collapse show login-collapse">
+                    {% partial 'account/login-form' %}
+
+                    <div class="text-center">
+
+                        {% if authentication.usePasswordRecovery %}
+                            <p class="mt-1 mb-3 text-body-secondary">
+                                Lost password?
+                                <a
+                                    href="javascript:;"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target=".login-collapse">
+                                    Recover password
+                                </a>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if authentication.usePasswordRecovery %}
+                <div class="collapse login-collapse">
+                    {% partial 'account/login-recovery-form' %}
+
+                    <div class="text-center">
+                        <p class="mt-5 mb-3 text-body-secondary">
+                            Rememebered your password?
+                            <a
+                                href="javascript:;"
+                                data-bs-toggle="collapse"
+                                data-bs-target=".login-collapse">
+                                Sign in again
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</div>

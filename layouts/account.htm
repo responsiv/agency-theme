@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ this.site.hard_locale }}">
+    <head>
+        {% partial 'site/head-meta' %}
+        <title>Agency - {{ this.page.meta_title ?: placeholder('pageTitle') }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'site/head-links' %}
+        {% partial 'site/head-scripts' %}
+        {% partial 'site/analytics-code' %}
+    </head>
+    <body id="page-top">
+        {% partial 'site/flash-messages' %}
+
+        <div class="container">
+            <div class="text-center pt-5">
+                <a class="btn btn-primary text-uppercase" href="{{ 'index'|page }}">
+                    Return Home
+                </a>
+                {% if user %}
+                    <a class="btn btn-secondary text-uppercase" href="javascript:;" data-request="onLogout">
+                        Log out
+                    </a>
+                {% endif %}
+            </div>
+            <div class="p-5 my-5 border">
+                {% page %}
+            </div>
+        </div>
+    </body>
+</html>

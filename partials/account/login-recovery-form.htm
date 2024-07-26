@@ -1,0 +1,26 @@
+<form method="post" data-request="onRecoverPassword" data-request-flash>
+    <input type="hidden" name="redirect" value="account/login" />
+
+    <div class="text-center pb-3">
+        <h1 class="h2 mb-3">Recover password</h1>
+        <h2 class="h5 fw-normal">Enter your email address</h2>
+    </div>
+
+    <div class="form-floating my-3">
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="inputRecoverEmail"
+            placeholder="name@example.com"
+        />
+        <label for="inputRecoverEmail">Email address</label>
+    </div>
+
+    <button
+        class="btn btn-primary btn-lg w-100 py-2"
+        data-attach-loading
+        type="submit">
+        Recover
+    </button>
+</form>

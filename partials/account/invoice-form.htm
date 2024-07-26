@@ -28,7 +28,13 @@ function onLookupInvoice()
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Pay Invoice</h2>
-            <h3 class="section-subheading text-muted">Enter your details below to open an invoice from us.</h3>
+            <h3 class="section-subheading text-muted">
+                Enter your details below to open an invoice from us.
+                You may also log in to
+                <a href="{{ 'account/index'|page }}">
+                    view all invoices
+                </a>.
+            </h3>
         </div>
 
         <form id="invoiceForm" data-request="onLookupInvoice" data-request-validate data-request-flash>
