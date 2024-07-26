@@ -1,0 +1,12 @@
+name: Agency
+description: 'Demo Agency theme.'
+author: Responsiv Internet
+homepage: 'http://octobercms.com'
+code: Agency
+authorCode: Responsiv
+require:
+    - RainLab.User
+    - RainLab.UserPlus
+    - RainLab.Location
+    - Responsiv.Pay
+    - Responsiv.Currency
