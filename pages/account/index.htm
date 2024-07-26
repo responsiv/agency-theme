@@ -12,6 +12,33 @@ redirect = "account/login"
 <div class="page-account">
     <h2 class="mb-4">
         My Invoices
-        {% component 'invoices' %}
     </h2>
+    {% if invoices %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th class="text-right">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                    <tr class="invoice-status-{{ invoice.status.code }}">
+                        <td><a href="{{ 'account/invoice'|page({ id: invoice.id }) }}">{{ invoice.getUniqueId }}</a></td>
+                        <td>{{ invoice.invoiced_at }}</td>
+                        <td><strong>{{ invoice.status.name }}</strong> since {{ invoice.status_updated_at }}</td>
+                        <td class="total text-right">{{ invoice.total|currency({ in: invoice.currency.code }) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+
+        <p>No invoices found.</p>
+
+    {% endif %}
 </div>

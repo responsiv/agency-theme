@@ -1,0 +1,17 @@
+##
+url = "/account/invoice/:id"
+layout = "account"
+title = "Account Homepage"
+
+[invoice]
+
+[session]
+security = "user"
+redirect = "account/login"
+==
+<div class="page-account">
+    <h2 class="mb-4">
+        Invoice
+    </h2>
+    {% component 'invoice' %}
+</div>
