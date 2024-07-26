@@ -1,0 +1,18 @@
+##
+url = "/payment/:hash"
+layout = "default"
+title = "Pay Invoice"
+
+[payment]
+isDefault = 1
+==
+<div class="container">
+    <div class="text-center pt-5">
+        <a class="btn btn-primary text-uppercase" href="{{ 'index'|page }}">
+            Return Home
+        </a>
+    </div>
+    <div class="p-5 my-5 border">
+        {% component 'payment' %}
+    </div>
+</div>

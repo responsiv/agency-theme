@@ -2684,6 +2684,10 @@ textarea.form-control-lg {
     color: #dc3545;
 }
 
+.invalid-feedback.oc-visible {
+    display: block;
+}
+
 .invalid-tooltip {
     position: absolute;
     top: 100%;

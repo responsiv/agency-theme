@@ -1,3 +1,29 @@
+==
+<?
+function onLookupInvoice()
+{
+    $data = Request::validate([
+        'invoice_number' => 'required',
+        'invoice_email' => 'required|email',
+    ]);
+
+    $invoice = (new Responsiv\Pay\Models\Invoice)
+        ->where('email', $data['invoice_email'])
+        ->applyInvoiceNumber($data['invoice_number'])
+        ->first();
+
+    if (!$invoice) {
+        throw new ValidationException(['invoice_number' => 'Invoice not found']);
+    }
+
+    if ($invoice->is_paid) {
+        throw new ValidationException(['invoice_number' => 'Invoice already paid. Thanks!']);
+    }
+
+    return Redirect::to($this->pageUrl('payment', ['hash' => $invoice->getUniqueHash()]));
+}
+?>
+==
 <section class="page-section" id="invoice">
     <div class="container">
         <div class="text-center">
@@ -5,19 +31,20 @@
             <h3 class="section-subheading text-muted">Enter your details below to open an invoice from us.</h3>
         </div>
 
-        <form id="invoiceForm">
+        <form id="invoiceForm" data-request="onLookupInvoice" data-request-validate data-request-flash>
             <div class="row align-items-stretch mb-5">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <!-- Name input-->
-                        <input class="form-control" id="name" type="text" placeholder="Invoice Number *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                        <input class="form-control" name="invoice_number" type="text" placeholder="Invoice Number" />
+                        <div class="invalid-feedback" data-validate-for="invoice_number"></div>
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <!-- Email address input-->
-                        <input class="form-control" id="email" type="email" placeholder="Your Email Address *" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                        <input class="form-control" name="invoice_email" type="email" placeholder="Your Email Address" />
+                        <div class="invalid-feedback" data-validate-for="invoice_email"></div>
                     </div>
                 </div>
             </div>
@@ -25,8 +52,8 @@
                 <div class="text-center text-danger mb-3">Error sending message!</div>
             </div>
             <div class="text-center">
-                <button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">
-                    Pay Invoice
+                <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">
+                    Lookup Invoice
                 </button>
             </div>
         </form>
