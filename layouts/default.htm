@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ this.site.hard_locale }}">
+    <head>
+        {% partial 'site/head-meta' %}
+        <title>Agency - {{ this.page.meta_title ?: placeholder('pageTitle') }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        {% partial 'site/head-links' %}
+        {% partial 'site/head-scripts' %}
+        {% partial 'site/analytics-code' %}
+    </head>
+    <body id="page-top">
+        {% page %}
+    </body>
+</html>
