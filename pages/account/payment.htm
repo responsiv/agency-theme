@@ -1,0 +1,15 @@
+##
+url = "/shop/payment/:hash"
+layout = "account"
+title = "Payment"
+
+[session]
+[payment]
+isDefault = 1
+==
+<div class="page-account">
+    <h2 class="mb-4">
+        Payment
+    </h2>
+    {% component 'payment' %}
+</div>
