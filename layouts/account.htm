@@ -18,7 +18,11 @@
                     Return Home
                 </a>
                 {% if user %}
-                    <a class="btn btn-secondary text-uppercase" href="javascript:;" data-request="onLogout">
+                    <a
+                        class="btn btn-secondary text-uppercase"
+                        href="javascript:;"
+                        data-request="onLogout"
+                        data-request-data="{ redirect: '{{ 'index'|page }}' }">
                         Log out
                     </a>
                 {% endif %}
